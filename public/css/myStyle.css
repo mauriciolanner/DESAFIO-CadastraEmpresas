@@ -32,6 +32,15 @@
     color: #fff !important;
 }
 
-.star-ico{
+.star-ico {
     color: rgb(255, 166, 0)
+}
+
+.ico-logo {
+    font-size: 30px;
+    color: #6875f5;
+}
+
+.max-imagem {
+    max-height: 80px;
 }

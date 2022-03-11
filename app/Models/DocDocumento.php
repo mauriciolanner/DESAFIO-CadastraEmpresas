@@ -17,7 +17,7 @@ class DocDocumento extends Model
 
     public function tdoTipoDocumento()
     {
-        return $this->belongsTo(TdoTipoDocumento::class, 'tdo_id_tdo', 'doc_id_tdo');
+        return $this->belongsTo(TdoTipoDocumento::class, 'doc_id_tdo', 'tdo_id_tdo');
     }
 
     public function empEmpresa()

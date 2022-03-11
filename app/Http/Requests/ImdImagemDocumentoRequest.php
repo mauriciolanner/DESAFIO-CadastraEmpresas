@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
-class DocDocumentoRequest extends FormRequest
+class ImdImagemDocumentoRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,9 +25,9 @@ class DocDocumentoRequest extends FormRequest
     public function rules()
     {
         return [
-            'doc_num_documento' => 'required|max:30',
-            'doc_id_tdo' => 'required|exists:tdo_tipo_documento,tdo_id_tdo',
-            'doc_id_emp' => 'required|exists:emp_empresa,emp_id_emp'
+            'imd_nom_arquivo' => 'required|max:2000',
+            'imd_arquivo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'imd_id_doc' => 'required|exists:doc_documento,doc_id_doc'
         ];
     }
 }

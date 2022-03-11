@@ -1,9 +1,13 @@
 <?php
 
 use App\Http\Controllers\EmpEmpresaController;
+use App\Http\Controllers\DocDocumentoController;
+use App\Http\Controllers\ImdImagemDocumentoController;
+use App\Http\Controllers\EndEndereco;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -30,7 +34,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/dashboard', fn () => Inertia::render('Dashboard'))->name('dashboard');
 });
 
-//rotas Empresa
+//rotas EmpEmpresa
 Route::middleware(['auth:sanctum', 'verified'])->controller(EmpEmpresaController::class)->group(function () {
     Route::get('/empresas', 'index')->name('empresas');
     Route::get('/empresa/{id}', 'show')->name('empresas.show');
@@ -40,7 +44,20 @@ Route::middleware(['auth:sanctum', 'verified'])->controller(EmpEmpresaController
     Route::put('/empresa/edita/especial/{id}', 'updateSpecial')->name('empresa.special');
 });
 
-//rotas documentos
+//rotas DocDocumentos
 Route::middleware(['auth:sanctum', 'verified'])->controller(DocDocumentoController::class)->group(function () {
     Route::post('/documento/criar', 'store')->name('documento.criar');
+    Route::put('/documento/deletar/{id}', 'destroy')->name('documento.deletar.pasta');
+});
+
+//rotas ImdImagemDocumentoController
+Route::middleware(['auth:sanctum', 'verified'])->controller(ImdImagemDocumentoController::class)->group(function () {
+    Route::post('/documento/enviar', 'store')->name('documento.enviar');
+    Route::put('/documento/arquivo/deletar/{id}', 'destroy')->name('documento.deletar');
+});
+
+//rotas EndEndereco
+Route::middleware(['auth:sanctum', 'verified'])->controller(ImdImagemDocumentoController::class)->group(function () {
+    Route::post('/documento/enviar', 'store')->name('documento.enviar');
+    Route::put('/documento/arquivo/deletar/{id}', 'destroy')->name('documento.deletar');
 });

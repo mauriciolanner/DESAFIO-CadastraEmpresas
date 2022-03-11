@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ImdImagemDocumento;
 use Illuminate\Http\Request;
+use App\Http\Requests\ImdImagemDocumentoRequest;
 
 class ImdImagemDocumentoController extends Controller
 {
@@ -33,9 +34,20 @@ class ImdImagemDocumentoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ImdImagemDocumentoRequest $request)
     {
-        //
+        $name = md5(date('HisYmd'));
+        $extension = $request->imd_arquivo->getClientOriginalExtension();
+        $nameFile = "{$name}.{$extension}";
+        $request->imd_arquivo->move(public_path('storage/imagensDocumentos'), $nameFile);
+
+        ImdImagemDocumento::create([
+            'imd_nom_arquivo' => $request->imd_nom_arquivo,
+            'imd_arquivo' => $nameFile,
+            'imd_id_doc' => $request->imd_id_doc,
+        ]);
+
+        return back(303);
     }
 
     /**
@@ -78,8 +90,9 @@ class ImdImagemDocumentoController extends Controller
      * @param  \App\Models\ImdImagemDocumento  $imdImagemDocumento
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ImdImagemDocumento $imdImagemDocumento)
+    public function destroy($id)
     {
-        //
+        ImdImagemDocumento::destroy($id);
+        return back(303);
     }
 }

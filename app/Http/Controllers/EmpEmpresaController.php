@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\EmpEmpresa;
+use App\Models\TdoTipoDocumento;
 use Illuminate\Http\Request;
 use App\Http\Requests\EmpEmpresaRequest;
 use Inertia\Inertia;
+use App\Models\DocDocumento;
 
 class EmpEmpresaController extends Controller
 {
@@ -53,7 +55,16 @@ class EmpEmpresaController extends Controller
      */
     public function show($id)
     {
-        return Inertia::render('EmpEmpresa/Show', ['EmpEmpresaUm' => EmpEmpresa::where('emp_id_emp', $id)->first()]);
+        return Inertia::render(
+            'EmpEmpresa/Show',
+            [
+                'EmpEmpresaUm' => EmpEmpresa::where('emp_id_emp', $id)
+                    ->with('docDocumento.tdoTipoDocumento')
+                    ->with('docDocumento.indImagemDocumento')
+                    ->with('endEndereco')->first(),
+                'TdoTipoDocumento' => TdoTipoDocumento::get()
+            ]
+        );
     }
 
     /**

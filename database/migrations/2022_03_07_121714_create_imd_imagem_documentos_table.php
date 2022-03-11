@@ -18,7 +18,7 @@ class CreateImdImagemDocumentosTable extends Migration
             $table->string('imd_nom_arquivo');
             $table->string('imd_arquivo');
             $table->unsignedBigInteger('imd_id_doc');
-            $table->foreign('imd_id_doc')->references('doc_id_doc')->on('doc_documento');
+            $table->foreign('imd_id_doc')->references('doc_id_doc')->on('doc_documento')->onDelete('cascade');
         });
     }
 

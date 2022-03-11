@@ -18,9 +18,9 @@ class CreateDocDocumentosTable extends Migration
             $table->string('doc_num_documento', 30);
             $table->dateTime('doc_dat_cadastro');
             $table->unsignedBigInteger('doc_id_tdo');
-            $table->foreign('doc_id_tdo')->references('tdo_id_tdo')->on('tdo_tipo_documento');
+            $table->foreign('doc_id_tdo')->references('tdo_id_tdo')->on('tdo_tipo_documento')->onDelete('cascade');
             $table->unsignedBigInteger('doc_id_emp');
-            $table->foreign('doc_id_emp')->references('emp_id_emp')->on('emp_empresa');
+            $table->foreign('doc_id_emp')->references('emp_id_emp')->on('emp_empresa')->onDelete('cascade');
         });
     }
 

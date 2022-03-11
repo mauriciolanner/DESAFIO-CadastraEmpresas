@@ -18,7 +18,7 @@ class CreateLogLogradourosTable extends Migration
             $table->longText('log_nom_logradouro', 1000);
             $table->string('log_num_cep', 12);
             $table->unsignedBigInteger('log_id_bai');
-            $table->foreign('log_id_bai')->references('bai_id_bai')->on('bai_bairro');
+            $table->foreign('log_id_bai')->references('bai_id_bai')->on('bai_bairro')->onDelete('cascade');
         });
     }
 

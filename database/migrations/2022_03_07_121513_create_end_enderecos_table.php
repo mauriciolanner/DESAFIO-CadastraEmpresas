@@ -20,9 +20,9 @@ class CreateEndEnderecosTable extends Migration
             $table->decimal('end_num_lat', 18, 12);
             $table->decimal('end_num_long', 18, 12);
             $table->unsignedBigInteger('end_id_log');
-            $table->foreign('end_id_log')->references('log_id_log')->on('log_logradouro');
+            $table->foreign('end_id_log')->references('log_id_log')->on('log_logradouro')->onDelete('cascade');
             $table->unsignedBigInteger('end_id_emp');
-            $table->foreign('end_id_emp')->references('emp_id_emp')->on('emp_empresa');
+            $table->foreign('end_id_emp')->references('emp_id_emp')->on('emp_empresa')->onDelete('cascade');
         });
     }
 
